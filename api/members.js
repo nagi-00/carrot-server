@@ -2,7 +2,7 @@
 //   GET  /api/members           → 목록
 //   POST /api/members {member}  → 추가
 import { verifyToken } from '../lib/auth.js';
-import { sheetList, sheetAdd } from '../lib/sheet.js';
+import { sheetList, sheetAdd, sheetStatus, sheetRemove } from '../lib/sheet.js';
 
 function authed(req) {
   const h = req.headers['authorization'] || '';
@@ -26,7 +26,11 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       let body = req.body;
       if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
-      const result = await sheetAdd(body && body.member);
+      body = body || {};
+      let result;
+      if (body.action === 'status') result = await sheetStatus(body.nick, body.status);
+      else if (body.action === 'remove') result = await sheetRemove(body.nick);
+      else result = await sheetAdd(body.member);
       res.status(result && result.error ? 502 : 200).json(result);
       return;
     }
