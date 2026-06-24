@@ -1,0 +1,10 @@
+{
+  "name": "booksearch-server",
+  "version": "1.0.0",
+  "description": "독서모임 출석용 알라딘 책 검색 서버 (검색 전용)",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node local-server.js"
+  }
+}
