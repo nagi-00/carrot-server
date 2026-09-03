@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   try {
     const result = await searchBooks(q, k);
     if (result && result.error) {
-      const code = result.error.indexOf('TTB') !== -1 ? 500 : 502;
+      const code = /KAKAO|GOOGLE/.test(result.error) ? 500 : 502;
       res.status(code).json(result);
       return;
     }
