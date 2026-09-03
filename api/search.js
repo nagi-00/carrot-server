@@ -1,6 +1,6 @@
 // Vercel 서버리스 함수: GET /api/search?q=제목[&k=TTB키]
 // Vercel은 /api 폴더의 파일을 자동으로 서버리스 함수로 띄웁니다.
-import { searchBooks } from '../lib/aladin.js';
+import { searchBooks } from '../lib/books.js';
 
 export default async function handler(req, res) {
   // CORS (출석 페이지에서 브라우저로 직접 호출)
