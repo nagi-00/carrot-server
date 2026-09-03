@@ -1,6 +1,8 @@
+// Vercel 서버리스 함수: GET /api/search?q=제목[&k=카카오 REST 키]
 import { searchBooks } from '../lib/books.js';
 
 export default async function handler(req, res) {
+  // CORS (출석 페이지에서 브라우저로 직접 호출)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
