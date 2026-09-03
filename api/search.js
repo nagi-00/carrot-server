@@ -23,12 +23,3 @@ export default async function handler(req, res) {
     res.status(502).json({ error: 'Search failed' });
   }
 }
-  // 임시 진단용 — 확인 끝나면 반드시 지울 것
-  if (req.query.debug === '1') {
-    res.status(200).json({
-      hasKakao: !!process.env.KAKAO_REST_KEY,
-      kakaoLen: (process.env.KAKAO_REST_KEY || '').length,
-      hasTtb: !!process.env.TTB_KEY
-    });
-    return;
-  }
